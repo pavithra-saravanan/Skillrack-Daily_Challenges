@@ -1,0 +1,69 @@
+
+Discount Slabs
+A shop has given discounts based on the price of purchase. There are N slabs. When the price falls between two slabs that is ith
+slab amount and (i+1)th slab amount then the discount for the ith slab is applied. Given the price of purchase print the discount
+ed amount to pay with precision up to two decimal places.
+Boundary Condition(s):1 <= N <= 100
+Input Format:The first line contains N and price of purchase separated by space(s).
+The second line contains N slabs separated by space(s).
+The third line contains N discount percentage values separated by space(s).
+Output Format:The first line contains the discounted amount to pay with precision up to two decimal places.
+Example Input/Output 1:Input:4 34001000 2000 3000 400012 16 18 24
+Output:2788.00
+Explanation:18% discount is applied since the price is between 3000 and 4000 slabs.
+Example Input/Output 2:Input:4 400500 1000 1500 200010 20 30 40
+Output:400.00
+Explanation:No discount is applied as it falls below the lowest slab.
+
+
+
+
+#include<stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+int n;
+float a;
+scanf("%d %f",&n,&a);
+int i,b[1000],d[1000];
+float total,dis;
+for(i=0;i<n;i++)
+{
+    scanf("%d ",&b[i]);
+}
+for(i=0;i<n;i++)
+{
+    scanf("%d ",&d[i]);
+}
+if(a>b[0] && n==1)
+{
+    dis=a*d[0]/100;
+    total=a-dis;
+   printf("%.2f",total); 
+}
+else if(a<b[0])
+{
+    printf("%.2f",a);
+}
+else if(a>b[n-1])
+{
+    dis=a*d[n-1]/100;
+    total=a-dis;
+    printf("%.2f",total);
+}
+else
+  {
+    for(i=0;i<n;i++)
+    {
+        if(b[i]<a && b[i+1]>a)
+        {
+            dis=a*d[i]/100;
+            total=a-dis;
+            printf("%.2f",total);
+            //break;
+        }
+    }
+}
+
+}
